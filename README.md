@@ -1,5 +1,5 @@
 # minecraft
-Minecraft Bedrock Server scripts I use to make updating easier, not perfect but works well enough for me currently.
+Minecraft Bedrock Server scripts I use to make updating easier, works well enough for me currently.
 
 I don't use these as my primary backups, set to keep only last 30 days.
 

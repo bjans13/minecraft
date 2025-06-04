@@ -4,7 +4,7 @@
 PAGE_URL="https://www.minecraft.net/en-us/download/server/bedrock"
 
 # File to store the last known link
-LAST_LINK_FILE="$HOME/bedrock_last_link.txt"
+LAST_LINK_FILE="/minecraft/bedrock_last_link.txt"
 
 # Fetch the page content with user agent Mozilla
 PAGE_CONTENT=$(wget -qO- --header="User-Agent: Mozilla/5.0" "$PAGE_URL")

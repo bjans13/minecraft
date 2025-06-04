@@ -7,6 +7,15 @@ if [ -z "$LATEST_BACKUP" ]; then
     exit 1
 fi
 
+# Read latest download URL from updatecheck
+LATEST_LINK_FILE="/minecraft/bedrock_last_link.txt"
+if [ ! -f "$LATEST_LINK_FILE" ]; then
+    echo "Latest version link not found! Update aborted."
+    exit 1
+fi
+
+DOWNLOAD_URL=$(cat "$LATEST_LINK_FILE")
+
 echo "Stopping server..."
 sudo systemctl stop minecraft
 
@@ -15,7 +24,10 @@ sudo /minecraft/backup.sh
 
 echo "Downloading latest version..."
 cd /minecraft/bedrock
-wget --no-check-certificate --user-agent="Mozilla/5.0" -O bedrock-server.zip https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.60.10.zip
+wget --no-check-certificate --user-agent="Mozilla/5.0" -O bedrock-server.zip "$DOWNLOAD_URL"
+
+# Manual entry
+# wget --no-check-certificate --user-agent="Mozilla/5.0" -O bedrock-server.zip https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.XX.XX.zip
 
 echo "Extracting new files..."
 unzip -o bedrock-server.zip

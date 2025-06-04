@@ -6,10 +6,10 @@ PAGE_URL="https://www.minecraft.net/en-us/download/server/bedrock"
 # File to store the last known link
 LAST_LINK_FILE="$HOME/bedrock_last_link.txt"
 
-# Fetch the page content with forced HTTP/1.1
+# Fetch the page content with user agent Mozilla
 PAGE_CONTENT=$(wget -qO- --header="User-Agent: Mozilla/5.0" "$PAGE_URL")
 
-# Extract the Linux bedrock server download link (updated CDN location)
+# Extract the Linux bedrock server download link
 CURRENT_LINK=$(echo "$PAGE_CONTENT" | grep -Eo 'https://www\.minecraft\.net/bedrockdedicatedserver/bin-linux/bedrock-server-[0-9.]+\.zip' | head -1)
 
 # Check if the current link was successfully retrieved

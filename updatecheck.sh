@@ -33,9 +33,19 @@ if [ "$CURRENT_LINK" != "$LAST_LINK" ]; then
     echo "Minecraft Bedrock Dedicated Server has updated!"
     echo "New link: $CURRENT_LINK"
 
-    # Email notification (assuming you have mailutils set up)
-    echo -e "Subject:Minecraft Bedrock Server Updated\n\nNew link: $CURRENT_LINK" | sendmail YOUR_EMAIL@example.com
+# Email notification (assuming you have mailutils set up)
+# echo -e "Subject:Minecraft Bedrock Server Updated\n\nNew link: $CURRENT_LINK" | sendmail YOUR_EMAIL@example.com
 
+# Discord webhook
+DISCORD_WEBHOOK="https://discord.com/api/webhooks/YOUR_WEBHOOK_id"
+
+MESSAGE="📦 **Minecraft Bedrock Server Updated!**\n🔗 $CURRENT_LINK"
+
+curl -H "Content-Type: application/json" \
+     -X POST \
+     -d "{\"content\": \"$MESSAGE\"}" \
+     "$DISCORD_WEBHOOK"
+     
     # Update the stored link
     echo "$CURRENT_LINK" > "$LAST_LINK_FILE"
 else

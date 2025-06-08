@@ -48,6 +48,9 @@ curl -H "Content-Type: application/json" \
      
     # Update the stored link
     echo "$CURRENT_LINK" > "$LAST_LINK_FILE"
+
+    # Run the update script
+    bash /minecraft/update.sh
 else
     echo "No change detected. Current link remains: $CURRENT_LINK"
 fi
